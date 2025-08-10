@@ -1,0 +1,64 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const d = new Date();
+      console.log(d);
+
+      myObj = {
+        name: "John",
+        age: 30,
+        myCars: {
+          car1: "Ford",
+          car2: "BMW",
+          car3: "Fiat",
+        },
+      };
+      console.log(myObj);
+      console.log(myObj.myCars);
+      console.log(myObj.myCars.car1);
+
+      // Create a Set
+      const letters = new Set();
+      letters.add("a");
+letters.add("b");
+letters.add("c");
+letters.add("c");
+letters.add("c");
+console.log(letters.size);
+
+
+const fruits = new Map([
+  ["apples", 500],
+  ["bananas", 300],
+  ["oranges", 200]
+]);
+
+const fruitss = new Map();
+
+fruitss.set("apples", 500);
+fruitss.set("bananas", 300);
+
+const person = {fname:"John", lname:"Doe", age:25};
+
+let text = "";
+for (let x in person) {
+  text += person[x];
+}
+console.log(text);
+
+const cars = ["BMW", "Volvo", "Mini"];
+
+let text1 = "";
+for (let x of cars) {
+  text1 += x;
+}
+console.log(text1);
+
+    </script>
+  </body>
+</html>

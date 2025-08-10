@@ -1,28 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal UI Design</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      line-height: 1.6;
+      background: #f5f5f5;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+    nav a {
+      display: block;
+      padding: 15px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #eaeaea;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      color: white;
+      text-align: center;
+      padding: 40px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5em;
+      animation: fadeInDown 1s ease-out;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      animation: fadeInUp 1s ease-out 0.5s both;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    section h2::after {
+      content: '';
+      width: 50px;
+      height: 4px;
+      background: #66a6ff;
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      border-radius: 2px;
+    }
+    .content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.5rem; }
+    }
+  </style>
 </head>
 <body>
-  <p id="pp">Welcome to the Basics Page</p>
-   <div id="container"></div>
-   <button  onClick =window.print() >print </button>
+
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <h1>Clean. Elegant. Efficient.</h1>
+    <p>Experience a modern, minimalist UI design crafted with pure HTML, CSS, and JavaScript—perfect for portfolios, startup landing pages, or simple web presence.</p>
+  </div>
+
+  <section id="about">
+    <h2>About This Design</h2>
+    <p>This layout embraces minimalism—ample white space, soft shadows, and simple animations for visual flair without clutter. It highlights content cleanly and elegantly.</p>
+  </section>
+
+  <section id="features">
+    <h2>Features</h2>
+    <div class="content">
+      <div class="card">
+        <h3>Smooth Animations</h3>
+        <p>Subtle fade-in effects and hover interactions bring the UI to life in a gentle way.</p>
+      </div>
+      <div class="card">
+        <h3>Responsive Layout</h3>
+        <p>Grid-based sections adapt gracefully to screen sizes for a seamless experience.</p>
+      </div>
+      <div class="card">
+        <h3>Sticky Navigation</h3>
+        <p>The header remains accessible, making navigation easy and user-friendly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Get In Touch</h2>
+    <p>Want help building this or customizing it further? Just send me a message—I’m happy to collaborate!</p>
+  </section>
 
   <script>
-    document.write('<h1> javascript basics</h1>');
-    const h2 = document.createElement('h2');
-    h2.textContent = 'This is a heading created with JavaScript';
-    document.getElementById('container').appendChild(h2);
-    console.log('all is well');
-
-    // const use for constant value
-    // let use for variable value
-    // var is used for global scope variable 
-
-
-  
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
   </script>
+
 </body>
 </html>
