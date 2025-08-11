@@ -1,0 +1,263 @@
+/* 
+.flex-container {
+ 
+} */
+
+header{
+   position: fixed;
+   width: 100%;
+}
+
+.navigation{
+  display: flex;
+   justify-content: flex-end;
+   background-color: black;
+   /* padding: 0px 0px;
+   margin: 0px 0px; */
+   /* width: 100%; */
+
+}
+.hamburger {
+  display: none;
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  /* margin: 0; */
+  /* padding: 0; */
+  background-color: #200505;
+  color: #ffffff;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.flex-element{
+  margin: 10px;
+  padding: 10px;
+  background-color: #200505;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+.flex-element:hover{
+    background-color: #fff;
+    color: #200505;
+  }
+
+.about{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  /* justify-content: center;   */
+
+}
+
+.about .image {
+  margin-top: 5%;
+  width: 35%;
+  height: 35%;
+  border-radius: 50%;
+
+
+}
+.about .name{
+  margin-top: 10%;
+  width: 50%;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.education{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  width: 50%;
+  margin: 10rem 35%;
+}
+
+.education-title{
+  font-weight: bold;
+  font-size: 3rem;
+  /* margin-bottom: 6rem; */
+}
+.education-element-title{
+  font-weight: bold;
+  font-size: 2rem;
+  margin-top: 6rem;
+}
+
+.education-element-subtitle{
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+.education-element-date{
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.projects{
+  display:flex;
+  flex-direction : column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 300px;
+}
+
+.projects-section-title{
+  font-weight : bold;
+  font-size: 3rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  margin-bottom: 2rem;
+  text-decoration: underline}
+
+.project{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-top: 2rem;
+  /* margin-bottom: 2rem; */
+  border: 3px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px ;
+}
+
+.project-title{
+  font-weight : bold;
+  font-size: 2rem;
+  align-self: center;
+  /* margin-bottom: 2rem; */
+
+
+}
+.project-technologies-title{
+  font-weight : bold;
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  align-self: center;
+}
+
+.project-technologies{
+  display: flex;
+  flex-flow: row wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.project-technologies-element{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.project-description{
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+
+ footer {
+  /* display: inline-block; */
+  /* position: fixed; */
+  bottom: 0;
+  /* left: 40px; */
+   /* color: #200505;  */
+   background-color: black;
+   width: 100%;
+   margin: 0px 0px;
+   padding: 0px 0px;
+   height: auto;
+}  
+
+.footer-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.footer-title{
+  font-size: 2rem;
+  font-weight: bold;
+  align-self: center;
+  width : 100%;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+}
+
+.contact-submit-btn{
+ background-color: #200505;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 12px 20px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.name-email{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  column-gap: 30px;
+  font-size: 1rem;
+}
+
+.contact-message{
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 30px;
+  font-size: 1rem;
+  align-items: center;
+}
+
+
+.contact-submit-btn:hover{
+  background-color: #fff;
+  color: #200505;
+  cursor: pointer;
+}
+
+.project-technologies-element img{
+  width: 100px;
+  height: 100px;
+}
+
+/* @media only screen and (max-width: 600px) {
+  
+  .navigation{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .flex-element{
+    width: 4rem;
+  }
+  .hamburger{
+    display: block;
+    width: 1.5rem;
+    height: 2rem;
+    /* z-index: 1000; */
+    font-size: 2rem;
+  }
+
+  .about{
+    margin-top: 100px;
+  }
+} */
