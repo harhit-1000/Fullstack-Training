@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Numbers</h1>
+<h2>The toLocaleString() Method</h2>
+
+<p>toLocaleString() returns a number as a string, using local language format.</p>
+
+<p>The options parameter (object) describes the formatting:</p>
+
+<p id="demo"></p>
+
+<script>
+let num = 1000000;
+let text = num.toLocaleString("hi-IN", {style:"currency", currency:"INR"});
+
+document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>

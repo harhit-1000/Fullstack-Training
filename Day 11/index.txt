@@ -1,0 +1,28 @@
+
+Result Size: 697 x 717
+const fs = require('fs');
+
+// Create a readable stream from a file
+const readableStream = fs.createReadStream('myfile.txt', {
+  encoding: 'utf8',
+  highWaterMark: 64 * 1024 // 64KB chunks
+});
+
+// Events for readable streams
+readableStream.on('data', (chunk) => {
+  console.log(`Received ${chunk.length} bytes of data.`);
+  console.log(chunk);
+});
+
+readableStream.on('end', () => {
+  console.log('No more data to read.');
+});
+
+readableStream.on('error', (err) => {
+  console.error('Error reading from stream:', err);
+});
+
+              
+Received 33 bytes of data.
+This is the content of myfile.txt
+No more data to read.

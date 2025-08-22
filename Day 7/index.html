@@ -1,0 +1,55 @@
+<!-- Event Listener -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container">
+    
+    <button id="btn">click me</button>
+  </div>
+
+  <p id="fruits"></p>
+</body>
+
+<script >
+
+  function alertMessage (){
+    document.getElementById('container').innerHTML = "<h1>you clicked me</h1>";
+    document.getElementById('container').style.backgroundColor  = "red";
+    alert("");
+  }
+  const btn  = document.getElementById('btn');
+  btn.addEventListener('click',alertMessage);
+
+
+  // addEventListener(event, function, useCapture);
+
+  // The default value is false, which will use the bubbling propagation,
+  //  when the value is set to true, the event uses the capturing propagation.
+
+  // document.getElementById("myP").addEventListener("click", myFunction, true);
+// document.getElementById("myDiv").addEventListener("click", myFunction, true);
+
+
+// Object.entries() makes it simple to use objects in loops:
+
+const fruits = {Bananas:300, Oranges:200, Apples:500};
+
+let text = "";
+for (let [fruit, value] of Object.entries(fruits)) {
+  text += fruit + ": " + value + "<br>";
+}
+
+document.getElementById("fruits").innerHTML = text;
+
+let text1 = "HELLO WORLD";
+let char = text1.charAt(0);
+let x = Number.MAX_VALUE;
+console.log(x)
+</script>
+</html>

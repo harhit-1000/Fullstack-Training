@@ -1,0 +1,10 @@
+const c = document.getElementById("myCanvas");
+const ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.moveTo(100, 20);
+ctx.lineTo(20, 100);
+ctx.lineTo(70, 100);
+ctx.fillRect(20, 20, 150, 100);
+ctx.fillRect.strokeStyle= "lightblue";
+ctx.strokeStyle = "red";
+ctx.stroke();
