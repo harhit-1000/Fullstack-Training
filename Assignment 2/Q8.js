@@ -12,7 +12,7 @@ function combinationSum(candidates, target) {
 
         for (let i = start; i < candidates.length; i++) {
             combination.push(candidates[i]);
-            backtrack(remaining - candidates[i], combination, i); // not i+1 since we can reuse same number
+            backtrack(remaining - candidates[i], combination, i+1);
             combination.pop();
         }
     }
@@ -21,5 +21,5 @@ function combinationSum(candidates, target) {
     return result;
 }
 
-console.log(combinationSum([2, 3, 6, 7], 7));
+console.log(combinationSum([1, 3, 6, 7], 7));
 

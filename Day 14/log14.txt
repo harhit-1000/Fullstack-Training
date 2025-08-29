@@ -1,0 +1,1 @@
+studied mongoose documentation and practice express post request.
