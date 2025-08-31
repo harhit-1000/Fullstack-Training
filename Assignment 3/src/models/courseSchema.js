@@ -22,6 +22,15 @@ const courseSchema = {
           bsonType: "string",
           description: "Optional course description",
         },
+        userIds:{
+          bsonType: "array",
+          items:{
+            bsonType: "objectId",
+            description: "Each much refrence a user _id",
+          },
+            description: "Array of user ObjectIds",
+
+        }
       },
     },
   },

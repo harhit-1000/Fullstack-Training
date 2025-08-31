@@ -39,7 +39,13 @@ const updateInfo = async (req, res) => {
 
 const studentView = async (req, res) => {
   try {
-    const result = await courses.find({}).toArray();
+     const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const sortBy = req.query.sort || "fees";
+    const order = 1;
+    const skip = (page-1)* limit;
+    const result = await courses.find({}).sort({[sortBy]:order}).skip(skip).limit(limit).toArray();
+    // const result = await courses.find({}).toArray();
 
     res.status(200).json({ message: "All courses listed", result: result });
   } catch (err) {
@@ -65,16 +71,30 @@ export const enrollCourse = async (req, res) => {
     if (!updatedCourseIds.includes(courseDetails._id)) {
       updatedCourseIds.push(courseDetails._id);
     }
+    else{
+      return res.status(200).json({message:"user already enrolled "});
+    }
     const enrolledResult = await users.findOneAndUpdate(
       { email },
       { $set: { courseIds: updatedCourseIds } },
       { returnDocument: "after" }
     );
+
+    const updatedUserIds = courses.userIds || [];
+    updatedUserIds.push(user._id);
+
+    const courseEnrolledResult = await courses.findOneAndUpdate(
+      { title },
+      { $set: { userIds: updatedUserIds } },
+      { returnDocument: "after" }
+    );
+
     return res
       .status(200)
       .json({
         message: "Successfully enrolled in  course",
         result: enrolledResult,
+        courseEnrolledResult:courseEnrolledResult
       });
   } catch (error) {
     return res
