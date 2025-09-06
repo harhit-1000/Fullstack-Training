@@ -1,9 +1,22 @@
-import {Router} from "express";
+import { Router } from "express";
+import {
+  getBlogs,
+  createBlog,
+  updateBlog,
+  deleteBlog,
+  likeBlog,
+  createComment,
+  getComments,
+} from "../controllers/blogController.js";
 
 const blogRouter = Router();
 
-blogRouter.get("/self-blog",getBlog);
-blogRouter.post("/self-blog",createBlog);
-blogRouter.put("/self-blog/:id",updateBlog);
-blogRouter.delete("/self-blog:id",deleteBlog);
-blogRouter.get("/getAllBlog",getAllBlog);
+blogRouter.get("/", getBlogs);
+blogRouter.post("/", createBlog);
+blogRouter.put("/:blogId", updateBlog);
+blogRouter.delete("/:blogId", deleteBlog);
+blogRouter.post("/:blogId/like", likeBlog);
+blogRouter.post("/:blogId/comment", createComment);
+blogRouter.get("/:blogId/comment", getComments);
+
+export default blogRouter;

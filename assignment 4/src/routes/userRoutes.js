@@ -1,5 +1,7 @@
 import {Router} from "express";
+import { getProfile, updateProfile } from "../controllers/userController.js";
+const userRouter = Router();
+userRouter.get("/",getProfile);
+userRouter.put("/",updateProfile);
 
-userRouter.get("/profile",getprofile);
-userRouter.put("/profile",updateprofile);
-
+export default userRouter;
