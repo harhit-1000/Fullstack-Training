@@ -7,7 +7,7 @@ const blogShema = mongoose.Schema({
   author: {type: mongoose.Schema.Types.ObjectId, required:true, ref:"User" },
   likes:[{type: mongoose.Schema.Types.ObjectId, ref:"User"   }],
   comments:[{type:mongoose.Schema.Types.ObjectId, ref:"Comment", }],
-  category:{type: mongoose.Schema.Types.ObjectId, ref:"Category"}
+  category:{type: String}
 },
 {timestamps:{currentTime: ()=> Date.now()}}
 );

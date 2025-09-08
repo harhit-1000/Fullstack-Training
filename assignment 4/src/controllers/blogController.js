@@ -1,4 +1,5 @@
 import Blog from "../models/blogSchema.js";
+import Category from "../models/categorySchema.js";
 import Comment from "../models/commentSchema.js";
 
 export const getBlogs = async (req, res) => {
@@ -27,7 +28,13 @@ export const createBlog = async (req, res) => {
     blog.author = user.id;
     blog.likes = [];
     blog.comments = [];
-    console.log(blog);
+  
+    const category = await Category.find({name:blog.category});
+    if(!category)
+    {
+      return res.status(404).json({message:"please choose valid category"});
+    }
+    
     const result = await Blog.create({...blog});
     return res.status(201).json({ message: "Blog created", result });
   } catch (error) {
