@@ -3,7 +3,14 @@ import Comment from "../models/commentSchema.js";
 
 export const getBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find({});
+    const {category} = req.query;
+    let blogs;
+    if(category)
+    {
+    blogs = await Blog.find({category:category});
+    }
+    else
+    blogs = await Blog.find({});
 
     return res.status(200).json({ message: "Blogs fetch Successfully", blogs });
 
