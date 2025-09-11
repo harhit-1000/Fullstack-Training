@@ -11,7 +11,7 @@ export const register = async (req, res)=>{
     if (error.code === 11000) {
     return res.status(400).json({ message: "Email already registered" });
   }
-    return res.status(500).json({message:"Failed to register",error});
+    return res.status(500).json({message:"Failed to register",});
   }
 }
 

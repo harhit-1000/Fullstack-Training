@@ -2,9 +2,9 @@ import mongoose from 'mongoose';
 import slugify from 'slugify';
 const blogSchema = mongoose.Schema({
   title:{type:String, required:true},
-  description:{type:String, require:true},
-  image:{type:String, required: true},
-  category:[{type:String,  enum: ["tech", "lifestyle", "education", "news", "health", "other"], default:"other" }],
+  description:{type:String, required:true},
+  imageUrl:{type:String, required: true},
+  category:[{type:String,  enum: ["tech", "lifestyle", "education", "news", "health", "other"], default:["other"] }],
   slug: {
       type: String,
       unique: true,
@@ -26,8 +26,9 @@ blogSchema.pre("save", function (next) {
       strict: true,
     });
   }
+  next();
 })
 
-const Blog = mongoose.model(Blog) || mongoose.Model("Blog",userSchema);
+const Blog = mongoose.models.Blog || mongoose.model("Blog",blogSchema);
 
 export default Blog;
