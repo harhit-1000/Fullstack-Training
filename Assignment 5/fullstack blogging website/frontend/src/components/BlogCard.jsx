@@ -1,0 +1,27 @@
+import React from 'react'
+import {format} from 'date-fns'
+const BlogCard = ({title, description, imageUrl, category, createdAt, author}) => {
+  const formattedDate = format(new Date(createdAt), "dd MMM yyyy");
+  return (
+    <div className =" flex flex-col sm:w-[260px] md:w-[380px] overflow-hidden space-y-6  mb-4 ">
+      <img className='w-full  h-[240px] object-cover transform transition duration-1000 hover:scale-110 overflow-clip ' src={imageUrl} alt="" />
+      <div>
+        <div className='font-semibold text-[#6941C6] ' > {author} &bull; {formattedDate}</div>
+      <div className='text-[#1A1A1A] font-bold text-[24px] mt-2'>{title}</div>
+      <div className=' text-[#667085] text-[18px]' >{description}</div>
+      </div>
+      <div className='flex flex-wrap space-x-2.5 pb-2'>
+        {category.map((item)=>
+         <span
+            key={item}
+            className="bg-violet-100 text-[#6941C6] px-4 py-[1px] rounded-full font-semibold text-[14px]"
+          >
+            {item}
+          </span>
+        )}
+      </div>
+    </div>
+  )
+}
+
+export default BlogCard;

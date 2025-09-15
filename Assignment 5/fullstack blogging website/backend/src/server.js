@@ -6,10 +6,11 @@ import ConnectToMongo from "./config/db.js";
 import userRouter from "./routes/userRoutes.js";
 import blogRouter from "./routes/blogrouter.js";
 import verifyToken from "./middlewares/verifyToken.js";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
-
+app.use(cors());
 
 app.use(express.json());
 morgan("dev");
@@ -18,7 +19,8 @@ app.get("/", verifyToken ,(req,res)=>{
 });
 
 app.use("/user",userRouter);
-app.use("/blog",verifyToken,blogRouter);
+// app.use("/blog",verifyToken,blogRouter);
+app.use("/blog",blogRouter);
 
  ConnectToMongo();
 
