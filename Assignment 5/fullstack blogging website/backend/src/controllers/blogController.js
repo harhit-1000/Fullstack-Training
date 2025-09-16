@@ -17,6 +17,16 @@ export const showBlog = async (req, res) => {
   }
 };
 
+export const yourBlog = async (req, res) =>{
+  try {
+    const {userId} = req.user; 
+    const blogs = await Blog.find({author:userId});
+    return res.status(200).json({message:"Blogs Fetched successfully", blogs:blogs});
+  } catch (error) {
+    return res.status(500).json({ error: error.message, message: "Failed to load blogs" });
+  } 
+}
+
 export const createBlog = async (req, res) => {
   try {
     const { userId } = req.user; 

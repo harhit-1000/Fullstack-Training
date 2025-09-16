@@ -1,20 +1,60 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import toggle from "../assets/toggle_mode.png" 
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({setToken}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className='w-full mx-0 flex justify-between items-center border-violet-300 border p-4 mt-5 mb-5 '>
-      <div className='font-semibold text-[25] cursor-pointer '>Your Name</div>
-      <div className='flex justify-between items-center space-x-5 text-[25] '>
-        <Link to="/blog">Blog</Link>
-        <Link to="/projects">projects</Link>
-        <Link to="/about">About</Link>
-        <Link to="/newsletter">Newsletter</Link>
-        <img className='w-[96px] h-[40px]' src={toggle}/>
-      </div>
-    </div>
-  )
-}
+    <nav className="w-full  mt-5 mb-5">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between items-center p-4">
+          
+          {/* Logo / Name */}
+          <div className="font-semibold text-xl sm:text-2xl cursor-pointer px-2 py-1 border-2 border-black rounded-sm hover:text-white hover:bg-black transition transform duration-500 hover:shadow-2xl md:py-2">
+            <Link to="/your-blogs">Your Blogs</Link>
+          </div>
 
-export default Navbar
+          {/* Hamburger Icon (Mobile Only) */}
+          <button
+            className="sm:hidden text-3xl focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            ☰
+          </button>
+
+          {/* Links (Desktop) */}
+          <div className="hidden sm:flex items-center gap-6 text-base sm:text-lg">
+            <Link to="/blog">Blog</Link>
+            <Link to="/projects">Projects</Link>
+            <Link to="/about">About</Link>
+            <Link to="/newsletter">Newsletter</Link>
+            <button onClick={()=> setToken(null)} className="px-4 py-2 bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition">
+              Logout
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Dropdown Menu */}
+        {isOpen && (
+          <div className="sm:hidden flex flex-col items-center gap-4 pb-4 text-base">
+            <Link to="/blog" onClick={() => setIsOpen(false)}>Blog</Link>
+            <Link to="/projects" onClick={() => setIsOpen(false)}>Projects</Link>
+            <Link to="/about" onClick={() => setIsOpen(false)}>About</Link>
+            <Link to="/newsletter" onClick={() => setIsOpen(false)}>Newsletter</Link>
+            <button
+              onClick={() => {
+                // Add logout logic here
+                setIsOpen(false);
+              }}
+              className="px-4 py-2 bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition"
+            >
+              Logout
+            </button>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

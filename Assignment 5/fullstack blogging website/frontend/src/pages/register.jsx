@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const Login = ({ setToken }) => {
+const Register = ({ setToken }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -11,28 +12,43 @@ const Login = ({ setToken }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/user/login`,
-        { email, password }
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/user/register`,
+        { name, email, password }
       );
-
-      setToken(response.data.token);
-      localStorage.setItem("authToken", response.data.token);
-
-      toast.success("Login successfully ");
+      toast.success("Registered Successfully");
       navigate("/");
     } catch (error) {
-      toast.error("Login failed ");
-      console.error("Login failed", error);
+      console.error("Register failed", error);
+      toast.error("Register failed");
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 ">
+    <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-lg bg-white hover:shadow-2xl border-2 border-violet-300 p-8 flex flex-col justify-center space-y-6 rounded-2xl">
-        <h2 className="font-bold text-2xl sm:text-3xl text-center">Login</h2>
+        <h2 className="font-bold text-2xl sm:text-3xl text-center">Register</h2>
 
         <form className="flex flex-col space-y-6" onSubmit={handleSubmit}>
+          {/* Name */}
+          <div className="flex flex-col space-y-2">
+            <label
+              className="text-lg sm:text-xl font-medium text-gray-700"
+              htmlFor="name"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="example1"
+              className="w-full text-lg sm:text-xl py-2 px-3 rounded border focus:outline-none focus:ring-2 focus:ring-violet-300"
+              required
+            />
+          </div>
+
           {/* Email */}
           <div className="flex flex-col space-y-2">
             <label
@@ -76,17 +92,17 @@ const Login = ({ setToken }) => {
             type="submit"
             className="text-white text-lg sm:text-xl bg-violet-400 hover:bg-violet-500 rounded-md py-3 w-full transition duration-300 ease-in-out"
           >
-            Login
+            Register
           </button>
         </form>
 
         <p className="text-center text-gray-600 text-sm mt-4">
-          Don’t have an account?{" "}
+          Already have an account?{" "}
           <Link
-            to="/register"
+            to="/login"
             className="text-violet-600 hover:text-violet-700 font-medium"
           >
-            Register here
+            Login here
           </Link>
         </p>
       </div>
@@ -94,4 +110,4 @@ const Login = ({ setToken }) => {
   );
 };
 
-export default Login;
+export default Register;

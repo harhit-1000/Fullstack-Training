@@ -19,8 +19,8 @@ app.get("/", verifyToken ,(req,res)=>{
 });
 
 app.use("/user",userRouter);
-// app.use("/blog",verifyToken,blogRouter);
-app.use("/blog",blogRouter);
+app.use("/blog",verifyToken,blogRouter);
+// app.use("/blog",blogRouter);
 
  ConnectToMongo();
 
