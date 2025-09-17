@@ -35,7 +35,7 @@ const YourBlogCard = ({title, description, imageUrl, category, createdAt, author
         )}
       </div>
       <div className='flex space-x-2 pb-4 px-4'>
-        <EditOutlined key="edit" className='hover:scale-110' style={{ color: "black", fontSize: "30px" }}/>
+        <EditOutlined   key="edit" className='hover:scale-110' style={{ color: "black", fontSize: "30px" }}/>
         <DeleteOutlined onClick={handleDelete} key="delete" className='hover:scale-110' style={{ color: "red", fontSize: "30px" }}/>
       </div>
     </div>

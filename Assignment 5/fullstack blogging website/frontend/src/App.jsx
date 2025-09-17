@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import { ToastContainer } from "react-toastify";
 import Register from './pages/register';
 import YourBlogs from './pages/YourBlogs';
+import AddBlog from './components/AddBlog';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           />
            <Route path="/register"  element={<Register  />} />
            <Route path="/your-blogs"  element={<YourBlogs  />} />
+           <Route path="/create-blog"  element={<AddBlog  />} />
 
         </Routes>
       </BrowserRouter>
