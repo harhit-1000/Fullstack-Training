@@ -1,19 +1,18 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useRef } from "react";
 
-const AddBlog = () => {
+const EditBlog = ({ }) => {
+  const { state } = useLocation();
+  // const {title, description, imageUrl, category, author, id} = state;
   const [image, setImage] = useState(null);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("other");
-  const fileInputRef = useRef(null);
+  const [title, setTitle] = useState(state.title);
+  const [description, setDescription] = useState(state.description);
+  const [category, setCategory] = useState(state.category);
 
 
   const handleCategory = (e) => {
-    setSelectedCategory(e.target.value);
     if (category.includes(e.target.value))
       toast.info("Already Selected");
     else {
@@ -34,31 +33,29 @@ const AddBlog = () => {
     });
     try {
       // image upload
+      let uploadedImageUrl = state.imageUrl;
+      if (image) {
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("upload_preset", "my_unsigned_preset");
+        formData.append("cloud_name", "ds1by38ct");
 
-      const formData = new FormData();
-      formData.append("file", image);
-      formData.append("upload_preset", "my_unsigned_preset");
-      formData.append("cloud_name", "ds1by38ct");
 
 
+        const res = await fetch(
+          "https://api.cloudinary.com/v1_1/ds1by38ct/image/upload",
+          { method: "POST", body: formData }
+        );
 
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/ds1by38ct/image/upload",
-        { method: "POST", body: formData }
-      );
+        const data = await res.json();
+        uploadedImageUrl=data.secure_url;
+      }
 
-      const data = await res.json();
 
       // form submit
-      const result = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/blog/create-blog`, { title: title.trim(), description: description.trim(), imageUrl: data.secure_url, category: category }, { headers: { authorization: `Bearer ${localStorage.getItem("authToken")}` } })
+      const result = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/blog/update-blog/${state.id}`, { title: title.trim(), description: description.trim(), imageUrl: uploadedImageUrl, category: category }, { headers: { authorization: `Bearer ${localStorage.getItem("authToken")}` } })
       toast.dismiss(loadingToast);
-      toast.success("Blog Added Succcessfully");
-      setTitle("");
-      setDescription("");
-      setImage(null);
-      setCategory([]);
-      setSelectedCategory("other");
-      fileInputRef.current.value = null;
+      toast.success("Blog Edited Succcessfully");
     } catch (error) {
       toast.dismiss(loadingToast);
       toast.error("Failed to Add");
@@ -68,7 +65,7 @@ const AddBlog = () => {
   return (
     <div className="min-h-screen flex justify-center items-start bg-gray-100 py-10 px-4">
       <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6 md:p-10">
-        <h2 className="text-3xl font-bold text-center mb-6">Add Blog</h2>
+        <h2 className="text-3xl font-bold text-center mb-6">Edit Blog</h2>
 
         <form className="flex flex-col space-y-4" onSubmit={handleSubmit}>
           {/* Title */}
@@ -109,7 +106,7 @@ const AddBlog = () => {
             <select
               id="category"
               name="category"
-              value={selectedCategory}
+              // value={category}
               onChange={handleCategory}
               className="border-2 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-black"
               required
@@ -142,7 +139,6 @@ const AddBlog = () => {
             <input
               id="image"
               type="file"
-              ref={fileInputRef}
               onChange={(e) => setImage(e.target.files[0])}
               className="border-2 border-gray-300 rounded-md p-2 w-full md:w-auto"
             />
@@ -151,10 +147,10 @@ const AddBlog = () => {
           </div>
 
           {/* Show Uploaded Image */}
-          {image &&
-            <div className="flex justify-center mt-4">
-              <img src={URL.createObjectURL(image)} alt="uploaded" className="w-48 h-auto rounded-md shadow-md" />
-            </div>}
+
+          <div className="flex justify-center mt-4">
+            <img src={image ? URL.createObjectURL(image) : state.imageUrl} alt="upload" className="w-48 h-auto rounded-md shadow-md" />
+          </div>
 
           {/* Submit Button */}
           <button
@@ -169,4 +165,4 @@ const AddBlog = () => {
   );
 };
 
-export default AddBlog;
+export default EditBlog;

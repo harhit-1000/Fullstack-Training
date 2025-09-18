@@ -3,8 +3,8 @@ import {format} from 'date-fns'
 const BlogCard = ({title, description, imageUrl, category, createdAt, author}) => {
   const formattedDate = format(new Date(createdAt), "dd MMM yyyy");
   return (
-    <div className =" flex flex-col sm:w-[260px] md:w-[380px] overflow-hidden space-y-6  mb-4 transform transition duration-500 hover:scale-105 hover:shadow-2xl rounded-md  ">
-      <img className='w-full  h-[240px] object-cover transform transition duration-500 hover:scale-105 ' src={imageUrl} alt="" />
+    <div className ="group flex flex-col sm:w-[260px] md:w-[380px] overflow-hidden space-y-6  mb-4 transform transition duration-500 hover:scale-105 hover:shadow-2xl rounded-md  ">
+      <img className='w-full  h-[240px] object-cover transform transition duration-500 hover:scale-105  group-hover:scale-105' src={imageUrl} alt="" />
       <div className='px-2'>
         <div className='font-semibold text-[#6941C6] ' > {author} &bull; {formattedDate}</div>
       <div className='text-[#1A1A1A] font-bold text-[24px] mt-2'>{title}</div>
