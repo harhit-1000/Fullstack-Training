@@ -98,7 +98,7 @@ const AddBlog = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="border-2 border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-black"
-              minLength={100}
+              minLength={50}
               required
             />
           </div>

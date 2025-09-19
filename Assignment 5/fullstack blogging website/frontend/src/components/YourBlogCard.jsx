@@ -4,7 +4,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import axios from 'axios';
 import { EditIcon } from 'lucide-react'
 import { Link, Router, Route } from 'react-router-dom';
-import EditBlog from './EditBlog';
+import EditBlog from '../pages/EditBlog';
 const YourBlogCard = ({ title, description, imageUrl, category, createdAt, author, id, setBlogs }) => {
   const formattedDate = format(new Date(createdAt), "dd MMM yyyy");
 

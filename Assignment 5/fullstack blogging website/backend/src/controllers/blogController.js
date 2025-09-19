@@ -23,7 +23,17 @@ export const yourBlog = async (req, res) =>{
     const blogs = await Blog.find({author:userId}).populate("author");
     return res.status(200).json({message:"Blogs Fetched successfully", blogs:blogs});
   } catch (error) {
-    return res.status(500).json({ error: error.message, message: "Failed to load blogs" });
+    return res.status(500).json({ error: error.message, message: "Failed to load blog" });
+  } 
+}
+export const blogPage = async (req, res) =>{
+  try {
+    const {userId} = req.user; 
+    const {slug} = req.params;
+    const blog = await Blog.findOne({slug:slug}).populate("author");
+    return res.status(200).json({message:"Blog Fetched successfully", blog:blog});
+  } catch (error) {
+    return res.status(500).json({ error: error.message, message: "Failed to load blog" });
   } 
 }
 

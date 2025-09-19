@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BlogCard from '../components/BlogCard';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -47,7 +48,8 @@ const Blogs = () => {
         items-start
       "
     >
-      {blogs.map((blog) => (
+      {blogs.map((blog, index) => (
+        <Link key={index} to={`/blog-page/${blog.slug}`}  >
         <BlogCard
           key={blog._id}
           title={blog.title}
@@ -58,6 +60,7 @@ const Blogs = () => {
           createdAt={blog.createdAt}
           slug={blog.slug}
         />
+        </Link>
       ))}
     </div>
   );
